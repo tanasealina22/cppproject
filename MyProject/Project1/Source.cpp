@@ -196,7 +196,7 @@ public:
         // Adaugare verificare pentru evitarea impartirii la zero
         if (op2.getOperand1() == 0.0 || op2.getOperand2() == 0.0) 
         {
-            std::cerr << "Eroare: Impartire la zero!" << std::endl;
+            cerr << "Eroare: Impartire la zero!" << endl;
             return Operatie();
         }
 
@@ -218,11 +218,11 @@ class Expresie {
 private:
     Calculator calculator;
 
-    Operatie parseExpresie(const std::string& expresie) const {
+    Operatie parseExpresie(const string& expresie) const {
         
         double operand1, operand2;
         char operatie;
-        std::istringstream stream(expresie);
+        istringstream stream(expresie);
         stream >> operand1 >> operatie >> operand2;
 
         
@@ -236,22 +236,22 @@ private:
         case '/':
             return calculator.imparte(Operatie(operand1, operand2), Operatie(0.0, 0.0));
         default:
-            std::cerr << "Eroare: Operatie invalida!" << std::endl;
+            cerr << "Eroare: Operatie invalida!" << endl;
             return Operatie();
         }
     }
 
 public:
     void evalueazaExpresie() {
-        std::string expresie;
-        std::cout << "Introduceti expresia: ";
-        std::getline(std::cin, expresie);
+        string expresie;
+        cout << "Introduceti expresia: ";
+        getline(cin, expresie);
 
         // Parsare și evaluare
         Operatie rezultat = parseExpresie(expresie);
 
         // Afișare rezultat
-        std::cout << "Rezultatul expresiei este: " << rezultat.evaluate() << std::endl;
+        cout << "Rezultatul expresiei este: " << rezultat.evaluate() << endl;
     }
 };
 
