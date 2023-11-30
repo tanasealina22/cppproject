@@ -1,3 +1,7 @@
+#pragma once
+
+#ifndef Operatie_h
+#define Operatie_h
 #include <iostream>
 #include <exception>
 #include <string.h>
@@ -56,3 +60,5 @@ class Calculator
 {
 
 };
+
+#endif
