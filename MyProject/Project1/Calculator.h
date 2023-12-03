@@ -1,9 +1,12 @@
-#pragma once
-#include "Operatie.h"
+#ifndef CALCULATOR_H
+#define CALCULATOR_H
+
+#include <string>
+using namespace std;
 
 class Calculator {
 public:
-    double calculeaza(const Operatie& op1, const Operatie& op2) const;
-    void metodaGenerica3();
-    void metodaGenerica4();
+    void processExpression(const string& expression);
 };
+
+#endif

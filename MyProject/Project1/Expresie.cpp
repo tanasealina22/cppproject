@@ -1,23 +1,92 @@
-﻿#include "Expresie.h"
+﻿#include "expresie.h"
 #include <iostream>
+#include <cctype>
+using namespace std;
 
-double Expresie::parseFactor(const char* expresie, size_t& index) const {
-    // Your implementation for parseFactor
-    // ...
-    double rezultat = 0.0; // Replace with your logic
-    return rezultat;
+
+int Expresie::evaluateTerm(const string& expression, size_t& index) {
+    
+    int result = evaluateFactor(expression, index);
+
+    while (index < expression.length()) {
+        char op = expression[index];
+
+        if (op == '*' || op == '/') {
+            index++; 
+
+            int nextFactor = evaluateFactor(expression, index);
+
+            if (op == '*') {
+                result *= nextFactor;
+            }
+            else if (op == '/') {
+                if (nextFactor != 0) {
+                    result /= nextFactor;
+                }
+                else {
+                    cerr << "Error: Division by zero!" << endl;
+                    return 0; 
+                }
+            }
+        }
+        else {
+            break; 
+        }
+    }
+
+    return result;
 }
 
-void Expresie::evalueazaExpresie(const char* expresie) {
-    size_t index = 0;  // Initialize the index
-    double rezultat = parseFactor(expresie, index);
+int Expresie::evaluateFactor(const string& expression, size_t& index) {
+    
+    int result = 0;
 
-    // Check if the expression was fully parsed
-    if (expresie[index] == '\0') {
-        // Afișare rezultat
-        std::cout << "Rezultatul expresiei este: " << rezultat << std::endl;
+    if (expression[index] == '(') {
+        index++; 
+        result = evaluateExpression(expression, index);
+        index++; 
+    }
+    else if (isdigit(expression[index])) {
+        while (index < expression.length() && isdigit(expression[index])) {
+            result = result * 10 + (expression[index] - '0');
+            index++;
+        }
     }
     else {
-        std::cerr << "Eroare: Expresie invalida!" << std::endl;
+        cerr << "Error: Invalid expression!" << endl;
     }
+
+    return result;
+}
+
+int Expresie::evaluateExpression(const string& expression, size_t& index) {
+    
+    int result = evaluateTerm(expression, index);
+
+    while (index < expression.length()) {
+        char op = expression[index];
+
+        if (op == '+' || op == '-') {
+            index++; 
+
+            int nextTerm = evaluateTerm(expression, index);
+
+            if (op == '+') {
+                result += nextTerm;
+            }
+            else if (op == '-') {
+                result -= nextTerm;
+            }
+        }
+        else {
+            break; 
+        }
+    }
+
+    return result;
+}
+
+int Expresie::solveExpression(const string& expression) {
+    size_t index = 0;
+    return evaluateExpression(expression, index);
 }
