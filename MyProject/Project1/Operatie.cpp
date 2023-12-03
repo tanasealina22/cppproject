@@ -1,2 +1,2 @@
 ﻿#include "Operatie.h"
-#include <string>
+#include <cstring>

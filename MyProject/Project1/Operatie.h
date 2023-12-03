@@ -1,64 +1,40 @@
 #pragma once
-
-#ifndef Operatie_h
-#define Operatie_h
 #include <iostream>
-#include <exception>
-#include <string.h>
-#include <cmath>
-using namespace std;
 
-#pragma once
-
-
-class Operatie
-{
+class Operatie {
 private:
-    double operand1;
-    double operand2;
+    char* vectorCaractere;
+    double* vectorNumeric;
+    const int campConstant;
+    static int campStatic;
+    static const int lungimeVectorCaractere = 10;
 
 public:
-    Operatie() : operand1(0.0), operand2(0.0) {}
-    Operatie(double op1, double op2) : operand1(op1), operand2(op2) {}
+    Operatie();
+    Operatie(const char* caractere, double* numeric, int constant);
+    Operatie(const Operatie& other);
+    ~Operatie();
 
-    //Operator +
-    Operatie operator+(const Operatie& other) const
-    {
-        Operatie rezultat;
-        rezultat.operand1 = operand1 + other.operand1;
-        rezultat.operand2 = operand2 + other.operand2;
-        return rezultat;
-    }
-    double getOperand1() const { return operand1; }
-    double getOperand2() const { return operand2; }
+    // Metode de acces
+    const char* getVectorCaractere() const;
+    void setVectorCaractere(const char* caractere);
+    const double* getVectorNumeric() const;
+    void setVectorNumeric(double* numeric);
+    int getCampConstant() const;
+    static int getCampStatic();
+    static void setCampStatic(int value);
 
-    //Operator -
-    Operatie operator-(const Operatie& other) const
-    {
-        Operatie rezultat;
-        rezultat.operand1 = operand1 - other.operand1;
-        rezultat.operand2 = operand2 - other.operand2;
-        return rezultat;
-    }
+    // Metode generice
+    void metodaGenerica1();
+    void metodaGenerica2();
 
-    //Operator *
-    Operatie operator*(const Operatie& other) const {
-        Operatie rezultat;
-        rezultat.operand1 = operand1 * other.operand1;
-        rezultat.operand2 = operand2 * other.operand2;
-        return rezultat;
-    }
+    // Operatori supraincarcati
+    Operatie& operator=(const Operatie& other);
+    char operator[](int index) const;
+    Operatie operator+(const Operatie& other) const;
+    bool operator==(const Operatie& other) const;
 
-    //Operator <<
-    friend ostream& operator<<(ostream& os, const Operatie& operatie) {
-        os << "Operatie(" << operatie.operand1 << ", " << operatie.operand2 << ")";
-        return os;
-    }
+    // Operatori de citire si afisare
+    friend std::istream& operator>>(std::istream& is, Operatie& operatie);
+    friend std::ostream& operator<<(std::ostream& os, const Operatie& operatie);
 };
-
-class Calculator
-{
-
-};
-
-#endif
