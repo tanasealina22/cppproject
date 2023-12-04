@@ -42,7 +42,7 @@ double Evaluator::evaluareExpresie(const ExpresieMatematica& expresie) {
                         rezultat /= operand;
                     }
                     else {
-                        
+
                         std::cout << "Eroare impartire la 0 ";
                         return false;
                     }
@@ -51,7 +51,7 @@ double Evaluator::evaluareExpresie(const ExpresieMatematica& expresie) {
                     rezultat = pow(rezultat, operand);
                     break;
                 default:
-                   
+
                     return 0.0;
                 }
             }
