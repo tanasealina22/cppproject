@@ -1,6 +1,6 @@
 ﻿#include "Evaluator.h"
-#include <cctype> 
-#include <cmath>  
+#include <cctype>  
+#include <cmath>   
 #include <iostream>
 
 double Evaluator::evaluareExpresie(const ExpresieMatematica& expresie) {
@@ -43,14 +43,15 @@ double Evaluator::evaluareExpresie(const ExpresieMatematica& expresie) {
                     }
                     else {
                         
-                        return 0.0;
+                        std::cout << "Eroare impartire la 0 ";
+                        return false;
                     }
                     break;
                 case '^':
                     rezultat = pow(rezultat, operand);
                     break;
                 default:
-                    
+                   
                     return 0.0;
                 }
             }

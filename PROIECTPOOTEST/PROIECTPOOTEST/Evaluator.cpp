@@ -43,7 +43,7 @@ double Evaluator::evaluareExpresie(const ExpresieMatematica& expresie) {
                     }
                     else {
                         // Tratare împărțire la zero
-                        return 0.0;
+                        std::cout << "Eroare impartire la 0";
                     }
                     break;
                 case '^':
