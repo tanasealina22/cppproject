@@ -1,13 +1,13 @@
-#include <iostream>
-#include "Calculator.h"
+﻿#include <iostream>
 #include "ExpresieMatematica.h"
 #include "Evaluator.h"
 
-void Calculator::startCalculator() {
-    std::cout << "Calculatorul este pornit.\n";
+int main() {
+    std::cout << "Introduceti o expresie matematica sau 'exit' pentru a iesi.\n";
+
     while (true) {
         std::string input;
-        std::cout << "Introduceti o expresie matematica sau 'exit' pentru a iesi: ";
+        std::cout << "Expresie: ";
         std::getline(std::cin, input);
 
         if (input == "exit") {
@@ -17,6 +17,9 @@ void Calculator::startCalculator() {
 
         ExpresieMatematica expresie(input);
         double rezultat = Evaluator::evaluareExpresie(expresie);
+
         std::cout << "Rezultat: " << rezultat << "\n\n";
     }
+
+    return 0;
 }

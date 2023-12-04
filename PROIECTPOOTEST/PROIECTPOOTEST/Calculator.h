@@ -8,4 +8,4 @@ public:
     static void startCalculator();
 };
 
-#endif
+#endif // CALCULATOR_H
